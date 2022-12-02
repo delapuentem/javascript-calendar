@@ -11,7 +11,7 @@ const DATOS = [
         from_avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLyGselFgr4KtgsTz7d1GJY66Wtcju48lOhA&usqp=CAU',
         assigned_code: 'MARAGULOP568845',
         assigned_name: 'María Aguado López',        
-        datetime: '2022-12-6 17:00:00',
+        datetime: '2022-12-06 17:00:00',
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const DATOS = [
         from_avatar: 'https://tecnofanatico.com/wp-content/uploads/2019/02/thispersondoesnotexist.com_.jpeg',
         assigned_code: 'MARAGULOP568845',
         assigned_name: 'María Aguado López',        
-        datetime: '2022-12-6 18:00:00',
+        datetime: '2022-12-06 18:00:00',
     },       
     {
         id: 3,
@@ -29,7 +29,7 @@ const DATOS = [
         from_avatar: 'https://f.rpp-noticias.io/2019/02/15/753301descarga-12jpg.jpg',
         assigned_code: 'MARAGULOP568845',
         assigned_name: 'María Aguado López',        
-        datetime: '2022-12-8 12:00:00',
+        datetime: '2022-12-08 12:00:00',
     },
     {
         id: 4,
@@ -74,7 +74,7 @@ const DATOS = [
         from_avatar: 'https://f.rpp-noticias.io/2019/02/15/753301descarga-12jpg.jpg',
         assigned_code: 'MARAGULOP568845',
         assigned_name: 'María Aguado López',        
-        datetime: '2022-12-5 18:00:00',
+        datetime: '2022-12-05 18:00:00',
     },
     {
         id: 9,
@@ -92,7 +92,7 @@ const DATOS = [
         from_avatar: 'https://tecnofanatico.com/wp-content/uploads/2019/02/thispersondoesnotexist.com_.jpeg',
         assigned_code: 'MARAGULOP568845',
         assigned_name: 'María Aguado López',        
-        datetime: '2023-11-1 18:00:00',
+        datetime: '2023-11-01 18:00:00',
     },          
 ]
 
