@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- Componente modal detalle cita -->
+    <script defer src="Modal/Modal.js"></script>
+    <link rel="stylesheet" href="Modal/Modal.css">
+</head>
+<body>
+    <div id="content">
+    <div id="calendar-navbar">
+        <span class="title-calendar">Calendario de reservas</span>
+        <div class="select" id="dropdown-year">
+            <div class="selected"><div class="value"></div><div class="arrow">▼</div></div><div class="select-options"></div>
+        </div>
+        <div class="select" id="dropdown-month">
+            <div class="selected"><div class="value"></div><div class="arrow">▼</div></div><div class="select-options"></div>
+        </div>
+    </div>
+
+    <h1 class="calendar_detail_title"></h1>
+    <div id="calendar"></div>
+    <div id="calendar-detail"></div>
+</div>
+
+
+
+<div id="appointment-info-modal">
+    <div class="modal-content">
+        <div class="header">
+            <h1>Detalles de la cita</h1>
+            <span class="close">&times;</span>
+        </div>
+        <div class="client-info">
+            <!-- Izquierda -->
+            <div class="left">
+            <img src="">
+            <h3>Jorge de la Puente</h3>
+            <span>jorge.delapuente@dxc.com</span>
+                <div class="appointment">
+                <div class="since">
+                    <p></p>
+                    Desde
+                </div>
+                <div class="until">
+                    <p></p>
+                    Hasta
+                </div>
+                </div>
+            </div>
+            <!-- Derecha -->
+            <div class="right">
+                <div class="status">Status<p></p></div>
+                <div class="code">Código<p></p></div>
+                <div class="assigned">Asignado a<p></p></div>
+                <div class="number">Telefono<p></p></div>
+                <div class="button"><img src="https://www.svgrepo.com/show/310088/test-call.svg"> Entrar en consulta</div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script defer src="renderCalendar.js"></script>
+    <script defer src="renderCalendarDetail.js"></script>
+</body>
+</html>

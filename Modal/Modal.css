@@ -1,0 +1,153 @@
+#appointment-info-modal{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+/* The Close Button */
+#appointment-info-modal .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#appointment-info-modal .modal-content .close:hover,
+#appointment-info-modal .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Modal Content */
+#appointment-info-modal .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 45%;
+    border-radius: 5px;
+}
+
+#appointment-info-modal .modal-content .client-info{
+    margin: 25px 20px 50px 20px;
+    display: grid;
+    grid-template-columns: 40% auto;
+    padding: 1.5rem 0rem 1.5rem 0rem;
+    column-gap: 2rem;
+}
+
+#appointment-info-modal .modal-content .header {
+    display: grid;
+    grid-template-columns: 90% auto;
+    padding: 1.2rem 0 0.8rem 0;
+    border-bottom: 1px solid #b8bbbe;
+    
+}
+
+#appointment-info-modal .modal-content .header h1{
+    margin: 0;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+#appointment-info-modal .modal-content .header .close{
+    padding-right: 20px;
+    text-align: right;
+}
+
+/* Modal Content: Left*/
+#appointment-info-modal .modal-content .client-info .left {
+    text-align: center;
+}
+
+#appointment-info-modal .modal-content .client-info .left img{
+    width: 100px;
+    border-radius: 50%;
+}
+
+#appointment-info-modal .modal-content .client-info .left h3{
+    margin:0;
+    margin-top: 10px;
+    color: #263446;
+}
+
+#appointment-info-modal .modal-content .client-info .left span{
+    font-size: 15px;
+    color: #858b91;
+}
+
+#appointment-info-modal .modal-content .client-info .left .appointment{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    color: #858b91;
+}
+
+#appointment-info-modal .modal-content .client-info .left .appointment p{
+    margin: 0;
+    margin-bottom: 3px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #263446;
+}
+
+#appointment-info-modal .modal-content .client-info .left .appointment .since{
+    border-right: 2px solid rgb(179, 179, 179);
+}
+
+
+/* Modal Content: Right*/
+
+#appointment-info-modal .modal-content .client-info .right{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    padding-right: 3.2rem;
+}
+
+#appointment-info-modal .modal-content .client-info .right div{
+    color: #858b91;
+    font-weight: bold;
+}
+
+#appointment-info-modal .modal-content .client-info .right p{
+    margin: 0;
+    margin-top: 5px;
+    color: #263446;
+    font-weight: normal;
+}
+
+#appointment-info-modal .modal-content .client-info .right .status p{
+
+}
+
+
+#appointment-info-modal .modal-content .client-info .right .button{
+    color: white;
+    background-color: #2186F1;
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+#appointment-info-modal .modal-content .client-info .right .button:hover{
+    cursor: pointer;
+    background-color: #0c79ee;
+
+}
+
+#appointment-info-modal .modal-content .client-info .right .button img{
+    margin-right: 0.5rem;
+    filter: invert(100%) sepia(93%) saturate(2%) hue-rotate(226deg) brightness(104%) contrast(100%);
+}
