@@ -5,64 +5,114 @@
 // - Renderiza las citas en el area lateral del dia seleccionado
 // - Renderiza la ventana modal del detalle de cada cita
 
-// Funcion que renderiza en el area lateral las citas del dia seleccionado
-function addAppointmentsDetail(data){
-    const badge = calendar_detail.querySelectorAll('componente-modal')
-    badge.forEach(function(item){
-        item.remove()
-    })
-
-    const fill = calendar_detail.querySelectorAll('div')
-    fill.forEach(function(item){
-        item.remove()
-    })
-
-    let citas = 0
-
-    data.forEach(function(appointment){
-        const datetime = new Date(Date.parse(appointment.datetime))
-        if(currentDay === datetime.getDate() && currentMonth === datetime.getMonth() + 1 && currentYear === datetime.getFullYear()){
-            // Datos de la cita
-            const hora = datetime.getHours() == 0 ? '00' : datetime.getHours()
-            const minutos = datetime.getMinutes() == 0 ? '00' : datetime.getMinutes()
-            // Renderizar la cita desde el componente
-            const cita = document.createElement('componente-modal')
-            cita.appointment = appointment
-            cita.hora = hora
-            cita.minutos = minutos
-            calendar_detail.appendChild(cita)
-            calendar_detail.style.border = '1px solid transparent'
-            calendar_detail.style.backgroundColor = 'transparent' 
-            citas += 1   
-        }
-    })
-
-    // Si el numero de citas es 0 renderizo una imagen de que no hay citas
-    if(citas === 0){
-        const fillappointmentArea = document.createElement('div')
-        fillappointmentArea.classList = 'fill-appointmentarea'
-        fillappointmentArea.innerHTML = `<img src='https://media.istockphoto.com/id/1171877472/vector/woman-meditating-in-nature-concept-illustration-for-yoga-meditation-relax-recreation-healthy.jpg?s=170667a&w=0&k=20&c=5WgKt9Su3HYVbqGUmxgcn1Qr6SPHEc6xjbB_zn5XEo8='>
-        <h3>No tienes ninguna cita hoy 😊</h3>`
-        calendar_detail.style.border = '1px solid rgb(221, 221, 221)'
-        calendar_detail.style.backgroundColor = 'white'       
-        calendar_detail.appendChild(fillappointmentArea)
-    }
-}
-
-addAppointmentsDetail(DATOS)
-
 // Funcion que selecciona un dia del calendario y modifica las variables constantes
 function clickInCalendarDay(){
     const area = document.querySelectorAll('.area')
+    const modal = document.querySelector('#appointment-info-modal')
     area.forEach(function(dia){
         dia.addEventListener('click', function(event){
             const currentArea = event.target.closest('.area')
             document.querySelectorAll('.area-active').forEach(function(item){
                 item.classList = 'area'
             })
-            currentArea.classList = 'area area-active'
             currentDay = Number(currentArea.querySelector('.dia').textContent)
-            addAppointmentsDetail(DATOS)
+
+            const citas = currentArea.querySelector('.info-area').querySelectorAll('div')
+            if(citas.length > 0){
+                // Peevention remove appointments from calendar detail
+                calendar_detail.querySelectorAll('div').forEach(function(item){
+                    item.remove()
+                })
+
+                // Load detail of appointmetns and show it
+                calendar_detail.style.display = 'block'
+                calendar.style.display = 'none'   
+                calendar_navbar.querySelector('.button.back').style.display = 'flex'
+                calendar_detail.innerHTML += `
+                <div class='row header'>
+                <div class='column-name'>Nombre cliente</div>
+                <div class='column-email'>Correo electrónico</div>
+                <div>Estado</div>
+                <div>Desde</div>
+                <div>Hasta</div>
+                <div>Acción</div>
+                </div>
+                `
+                DATOS.forEach(function(appointment){
+                    const datetime = new Date(Date.parse(appointment.datetime))
+                    if(currentDay === datetime.getDate() && currentMonth === datetime.getMonth() + 1 && currentYear === datetime.getFullYear()){
+                        const hora = datetime.getHours() == 0 ? '00' : datetime.getHours()
+                        const minutos = datetime.getMinutes() == 0 ? '00' : datetime.getMinutes()
+                        const nombre = String(appointment.from_name).split(' ')
+                        const row = document.createElement('div')
+                        row.classList = 'row'
+                        const avatar = document.createElement('img')
+                        avatar.classList = 'avatar'
+                        avatar.src = appointment.from_avatar
+                        row.appendChild(avatar)
+                        const name = document.createElement('span')
+                        name.classList = 'name'
+                        name.innerText = `${nombre[0]} ${nombre[1]} ${nombre[2]}`
+                        row.appendChild(name)
+                        const email = document.createElement('span')
+                        email.classList = 'email'
+                        email.innerText = 'correoelectronico@email.com'
+                        row.appendChild(email)
+                        const status = document.createElement('span')
+                        status.classList = 'status'
+                        status.innerText = 'confirmed'
+                        row.appendChild(status)
+                        const since = document.createElement('span')
+                        since.classList = 'hour'
+                        since.innerText = `${hora}:${minutos}`
+                        row.appendChild(since)
+                        const until = document.createElement('span')
+                        until.classList = 'hour'
+                        until.innerText = `${hora + 1}:${minutos}`
+                        row.appendChild(until)
+                        const button = document.createElement('div')
+                        button.classList = 'button'
+                        button.innerText = 'ver cita'
+                        row.appendChild(button)
+                        calendar_detail.appendChild(row)
+
+                        // Show modal
+                        button.addEventListener('click', function(event){
+                            const modal_content = modal.querySelector('.body')
+                            modal_content.querySelector('.left').querySelector('img').src = appointment.from_avatar
+                            modal_content.querySelector('.left').querySelector('h3').innerText = `${nombre[0]} ${nombre[1]} ${nombre[2]}`
+                            modal_content.querySelector('.left').querySelector('span').innerText = 'correoelectronico@email.com'
+                            modal_content.querySelector('.left').querySelector('.appointment').querySelector('.since').querySelector('p').innerText = `${hora}:${minutos}`
+                            modal_content.querySelector('.left').querySelector('.appointment').querySelector('.until').querySelector('p').innerText = `${hora + 1}:${minutos}`
+                            modal_content.querySelector('.right').querySelector('.status').querySelector('p').innerText = 'confirmed'
+                            modal_content.querySelector('.right').querySelector('.code').querySelector('p').innerText = 'CITA0066552211'
+                            modal_content.querySelector('.right').querySelector('.assigned').querySelector('p').innerText = `${String(appointment.assigned_name).split(' ')[0]} ${String(appointment.assigned_name).split(' ')[1]}`
+                            modal_content.querySelector('.right').querySelector('.number').querySelector('p').innerText = '680000000'
+                            modal.style.display = "block"
+                        })
+                    }                    
+                })      
+
+                // Close modal
+                const closeIcon = modal.querySelector('.modal-content').querySelector('.close')
+                closeIcon.addEventListener('click', function(event){
+                    modal.style.display = "none"
+                })                
+
+                modal.addEventListener('click', function(event){
+                    if(event.target === modal){
+                        modal.style.display = "none"
+                    }
+                })
+
+                // Back button
+   
+                calendar_navbar.querySelector('.button.back').addEventListener('click', function(event){
+                    calendar.style.display = 'grid'
+                    calendar_detail.style.display = 'none'
+                    calendar_navbar.querySelector('.button.back').style.display = 'none'
+                })
+            }
         })
         
     })
@@ -100,8 +150,13 @@ yearsArray.forEach(function(item){
         })
         currentDay = 1
         renderCalendar(getDaysInMonth(currentYear, currentMonth))
-        addAppointmentsDetail(DATOS)
         clickInCalendarDay()
+
+        // Si estoy en calendar detail y modifico el mes y el año me devuelve al calendario de lo que he seleccionado
+        if(calendar_detail.style.display = 'block'){
+            calendar_detail.style.display = 'none'
+            calendar.style.display = 'grid'
+        }
     })
 })
 
@@ -151,8 +206,13 @@ for (const [key, value] of Object.entries(monthDict)) {
         })
         currentDay = 1
         renderCalendar(getDaysInMonth(currentYear, currentMonth))
-        addAppointmentsDetail(DATOS)
         clickInCalendarDay()
+
+        // Si estoy en calendar detail y modifico el mes y el año me devuelve al calendario de lo que he seleccionado
+        if(calendar_detail.style.display = 'block'){
+            calendar_detail.style.display = 'none'
+            calendar.style.display = 'grid'
+        }
         
     })
 }

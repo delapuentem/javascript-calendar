@@ -41,6 +41,15 @@ const DATOS = [
         datetime: '2022-12-14 12:00:00',
     },    
     {
+        id: 4,
+        from_code: 'DIECALGAR025546',
+        from_name: 'Vanesa Martinez Martinez',
+        from_avatar: 'https://files.oyebesmartest.com/uploads/preview/insta-118801856-27s0m3wvj.jpeg',
+        assigned_code: 'MARAGULOP568845',
+        assigned_name: 'María Aguado López',        
+        datetime: '2022-12-14 14:00:00',
+    },        
+    {
         id: 5,
         from_code: 'MARGONLOP025546',
         from_name: 'Marta Gonzalez López',
@@ -237,7 +246,7 @@ function renderCalendar(totalMonthDays){
         calendar.appendChild(area)     
         // Rellenar los huecos de la ultima fila del calendario hasta completarlo
         if (i === getDaysInMonth(currentYear, currentMonth)){
-            const nextmultiple = Math.ceil(i/5)*5
+            const nextmultiple = Math.ceil(i/7)*7
             while (i < nextmultiple){
                 i++
                 const area = document.createElement('div')

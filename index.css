@@ -1,22 +1,125 @@
 body{
-    margin:4rem 3rem;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #F7F7F8;
+    background-color: rgb(246, 247, 250);
+
+}
+
+#navbar{
+    background-color:white;
+    height: 75px;
+    display: grid;
+    grid-template-columns: 1fr 45px 250px;
+    align-items: center;
+    padding: 0 7rem;
+    box-shadow: rgba(117, 117, 117, 0.054) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+#navbar .menu{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    font-weight: 600;
+    width: 600px;
+    align-items: center;
+}
+
+#navbar .avatar img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+}
+
+#navbar .menu img{
+    width: 45px;
+    margin-right: 1rem;
+}
+
+#navbar .menu .logo{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    margin-right: 1rem;
+}
+
+
+#navbar .avatar{
+    text-align: right;
+    display: grid;
+    grid-template-columns:180px 35px;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+#navbar .avatar:hover{
+    cursor: pointer;
+}
+
+#navbar .notification{
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+#navbar .notification:hover{
+    cursor: pointer;
 }
 
 #content{
-    display: grid;
-    grid-template-columns: 75% auto;
-    column-gap: 1rem;
-    row-gap: 1rem;
+    margin: 0 4rem;
 }
+
+/* Menu */
 
 #calendar-navbar{
     display: grid;
     grid-template-columns: 230px 150px 150px 1fr;
     column-gap: 1rem;
     align-items:center;
+    padding: 3rem 3rem 1.5rem 3rem;
 }
+
+#calendar-navbar .button-area{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}
+
+#calendar-navbar .button{
+    padding: 0.4rem 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+#calendar-navbar .button.back{
+    background-color: rgb(189, 191, 209);
+    width: 170px;
+    display: none;
+}
+
+#calendar-navbar .button.back:hover{
+    background-color: rgb(166, 168, 184);  
+    cursor: pointer;
+}
+
+#calendar-navbar .button.add{
+    background-color: rgb(68, 189, 104);
+    width: 150px;
+}
+
+#calendar-navbar .button.add:hover{
+    background-color: rgb(48, 188, 90);
+    cursor: pointer;
+}
+
+#calendar-navbar .button img{
+    margin-right: 10px;
+    filter: invert(100%) sepia(4%) saturate(17%) hue-rotate(114deg) brightness(105%) contrast(106%);
+    width: 15px;
+}
+
+
 
 
 /* Navbar */
@@ -28,39 +131,87 @@ body{
 
 /* Calendario detalle */
 
-
-.calendar_detail_title{
-    font-size:18.5px;
-    margin: 0;
- 
+#calendar-detail{
+    background-color: white;
+    border: 1px solid rgb(221, 224, 232);
+    margin: 0rem 3rem 3rem 3rem;
+    display: none;
 }
 
-#calendar-detail .fill-appointmentarea{
-    margin-top: 11rem;
+#calendar-detail .row{
+    display: grid;
+    grid-template-columns: 5% 23% 24% 11% 13% 13% 11%;
+    row-gap: 1rem;
+    align-items: center;
+    padding: 1rem 2rem;
     text-align: center;
 }
 
-#calendar-detail .fill-appointmentarea img{
-    width: 80%;
+#calendar-detail .row.header{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+#calendar-detail .row .column-name{
+    grid-column: 1/3;    
+}
+
+#calendar-detail .row:not(:last-child){
+    border-bottom: 1px solid rgb(221, 224, 232);
+}
+
+#calendar-detail .row img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#calendar-detail .row .status{
+    color: rgb(113, 200, 95);
+}
+
+#calendar-detail .row .name{
+    text-align: left;
+    padding-left: 15px;
+}
+
+#calendar-detail .row .email{
+    text-align: center;
+}
+
+#calendar-detail .row .button{
+    padding: 0.5rem 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    background-color: rgb(11, 123, 252);
+    border-radius: 3px;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+#calendar-detail .row .button:hover{
+    background-color: rgb(0, 96, 206);
+    cursor: pointer;
 }
 
 /* Calendario */
 
 #calendar{
+    border: 1px solid rgb(221, 224, 232);
     display: grid;
-    grid-template-columns: repeat(5, 20%);
+    grid-template-columns: repeat(7, auto);
     background-color: #ffffff;
-    border-radius: 5px;
+    margin: 0rem 3rem 3rem 3rem;
 }
 
 #calendar .area{
-    padding: 1rem;
-    border: 1px solid rgb(221, 221, 221);
-    min-height: 137px;
-}
-
-#calendar .area.area-active{
-    background-color: aliceblue;
+    border: 1px solid rgb(240, 241, 245);
+    min-height: 155px;
+    position: relative;
 }
 
 #calendar .area.area-active .dia{
@@ -72,9 +223,10 @@ body{
 }
 
 #calendar .area .dia{
-    color: rgb(96, 174, 252);
-    font-size: 30px;
+    color: rgb(19, 30, 41);
+    font-size: 18px;
     font-weight: 900;
+    padding: 0.8rem;
 }
 
 #calendar .area:hover .dia{
@@ -82,23 +234,25 @@ body{
 }
 
 #calendar .info-area{
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
+    position:absolute;
+    bottom:0;
+    width: 100%;
 }
 
 #calendar .badge{
     font-weight: 600;        
-    padding: 0.4rem 0.5rem;
-    margin-bottom: 0.5rem;
+    padding: 0.6rem 0.5rem;
+    margin-top: 0.3rem;
     font-size: 12px;
-    border-radius: 3px;
 }
 
 #calendar .bagde-appointment{
     display: grid;
     grid-template-columns: 80% auto;
-    background-color: rgb(11, 123, 252);
+    border-left: 4px solid rgb(11, 123, 252);
+    background-color: rgb(246, 247, 250);
     font-weight: bold;
-    color: white;
 }
 
 #calendar .bagde-appointment.full{
@@ -116,12 +270,12 @@ body{
 }
 
 #calendar .bagde-appointment.full .counter{
-    background-color: red;
+    background-color: rgb(0, 123, 230);
     justify-content: center;
     border-radius: 4px;
     height: 15px;
-    font-size: 11px;
-
+    font-size: 12px;
+    color: white;
 }
 
 #calendar .bagde-appointment .badge-time{
